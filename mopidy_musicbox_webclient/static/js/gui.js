@@ -95,7 +95,7 @@ function setSongInfo(data) {
 
     songdata = data;
 
-    $("#modalname").html(data.track.name);
+    $("#modalname").html('Titre de l&apos;oeuvre : <br />' + data.track.name);
 
     if (!data.track.length || data.track.length == 0) {
         songlength = 0;
@@ -113,9 +113,11 @@ function setSongInfo(data) {
     var arttmp = '';
 
     if(data.track.artists) {
+
 	for (var j = 0; j < data.track.artists.length; j++) {
+          artistshtml += 'Interprète : ';
     	    artistshtml += '<a href="#" onclick="return showArtist(\'' + data.track.artists[j].uri + '\');">' + data.track.artists[j].name + '</a>';
-    	    artiststext += data.track.artists[j].name;
+          artiststext += data.track.artists[j].name;
     	    if (j != data.track.artists.length - 1) {
 	        artistshtml += ', ';
         	artiststext += ', ';
@@ -124,7 +126,7 @@ function setSongInfo(data) {
         arttmp = artistshtml;
     }
     if (data.track.album && data.track.album.name) {
-        $("#modalalbum").html('<a href="#" onclick="return showAlbum(\'' + data.track.album.uri + '\');">' + data.track.album.name + '</a>');
+        $("#modalalbum").html('Extrait de ' + '<a href="#" onclick="return showAlbum(\'' + data.track.album.uri + '\');">' + data.track.album.name + '</a>');
         getCover(data.track.album, '#infocover, #controlspopupimage', 'extralarge');
     } else {
         $("#modalalbum").html('');
